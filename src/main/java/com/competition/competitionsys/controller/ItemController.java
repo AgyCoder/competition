@@ -8,20 +8,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/item")
 public class ItemController {
     @Autowired
     private ItemService itemService;
 
     @RequestMapping("/findAllItems")
-    @ResponseBody
-    public List<ItemModel> findAllItems(Model model){
+    public List<ItemModel> findAllItems(){
         List<ItemModel> allItems = itemService.findAllItems();
         return allItems;
-
     }
 }
