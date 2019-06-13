@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * 该类专门用来接受请求参数
+ * 同时可以提高一定的系统安全性
  */
 public class ReqUserModel {
     private Integer userCode;//用户码(职工号或学号)

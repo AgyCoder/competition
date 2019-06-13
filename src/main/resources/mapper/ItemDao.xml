@@ -5,4 +5,10 @@
     <select id="findAllItems" resultType="com.competition.competitionsys.domain.ItemModel">
         select * from item
     </select>
+
+    <insert id="addItem" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.competition.competitionsys.domain.ItemModel">
+            insert into item(itemName,categoryId,photo,description,signUpStartTime,signUpEndTime,startTime,endTime,sponsor)
+            values (#{itemName},#{categoryId},#{photo},#{description},#{signUpStartTime},#{signUpEndTime},#{startTime},#{endTime},#{sponsor})
+    </insert>
 </mapper>

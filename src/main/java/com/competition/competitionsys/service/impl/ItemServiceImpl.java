@@ -16,4 +16,9 @@ public class ItemServiceImpl implements ItemService {
     public List<ItemModel> findAllItems() {
         return itemDao.findAllItems();
     }
+
+    @Override
+    public Integer addItem(ItemModel itemModel) {
+        return itemDao.addItem(itemModel);
+    }
 }

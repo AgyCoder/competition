@@ -35,7 +35,7 @@ public class LoginController {
                 //判断密码
                 if (userModel.getPassword().equals(reqUserModel.getPassword())) {
                     //判断角色
-                    if (userModel.getRole()==reqUserModel.getRole()) {
+                    if (userModel.getRole().equals(reqUserModel.getRole())) {
                         if(userModel.getRole()==1){
                             System.out.println("欢迎学生");
                             return new ResponseData(WebCts.RESP_SUCCESS);

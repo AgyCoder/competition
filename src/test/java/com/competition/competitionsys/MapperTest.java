@@ -4,6 +4,7 @@ import com.competition.competitionsys.dao.ItemDao;
 import com.competition.competitionsys.dao.UserDao;
 import com.competition.competitionsys.domain.ItemModel;
 import com.competition.competitionsys.domain.UserModel;
+import com.competition.competitionsys.service.ItemService;
 import com.competition.competitionsys.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,10 +23,22 @@ public class MapperTest {
     @Autowired
     private ItemDao itemDao;
 
+    @Autowired
+    private ItemService itemService;
     @Test
     public void testuser(){
         List<UserModel>users = userDao.findAllUsers();
         System.out.println(users);
+    }
+
+    @Test
+    public void testaddItem(){
+        ItemModel itemModel=new ItemModel();
+        itemModel.setItemName("国际象棋");
+        itemModel.setCategoryId(1);
+        itemService.addItem(itemModel);
+        Integer id=itemModel.getId();
+        System.out.println(id);
     }
 
     @Test

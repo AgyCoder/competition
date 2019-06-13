@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ItemService {
     public List<ItemModel> findAllItems();
+
+    public Integer addItem(ItemModel itemModel);
 }

@@ -1,17 +1,11 @@
-package com.competition.competitionsys.domain;
+package com.competition.competitionsys.domain.Req;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 
-/*
-* 竞赛项目实体类
-*
-* */
-
-public class ItemModel implements Serializable {
-
-    private Integer id;       //项目id
+/**
+ * 该类专门用来接受请求参数
+ * 同时可以提高一定的系统安全性
+ */
+public class ReqItemModel {
     private String itemName;     //项目名称
     private Integer categoryId;  //类别id
     private String photo;        //图片
@@ -22,15 +16,6 @@ public class ItemModel implements Serializable {
     private String endTime;         //比赛结束时间
     private String sponsor;         //主办方
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    @NotBlank(message = "比赛名称不能为空")
     public String getItemName() {
         return itemName;
     }
@@ -39,7 +24,6 @@ public class ItemModel implements Serializable {
         this.itemName = itemName;
     }
 
-    @NotNull(message = "请填写比赛种类")
     public Integer getCategoryId() {
         return categoryId;
     }
@@ -102,21 +86,5 @@ public class ItemModel implements Serializable {
 
     public void setSponsor(String sponsor) {
         this.sponsor = sponsor;
-    }
-
-    @Override
-    public String toString() {
-        return "ItemModel{" +
-                "itemId=" + id +
-                ", itemName='" + itemName + '\'' +
-                ", categoryId=" + categoryId +
-                ", photo='" + photo + '\'' +
-                ", description='" + description + '\'' +
-                ", signUpStartTime='" + signUpStartTime + '\'' +
-                ", signUpEndTime='" + signUpEndTime + '\'' +
-                ", startTime='" + startTime + '\'' +
-                ", endTime='" + endTime + '\'' +
-                ", sponsor='" + sponsor + '\'' +
-                '}';
     }
 }
