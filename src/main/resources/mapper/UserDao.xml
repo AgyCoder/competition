@@ -5,4 +5,8 @@
     <select id="findAllUsers" resultType="com.competition.competitionsys.domain.UserModel">
         select * from user
     </select>
+
+    <select id="findUserByUserCode" resultType="com.competition.competitionsys.domain.UserModel" parameterType="Integer">
+        select * from user where userCode = #{userCode}
+    </select>
 </mapper>

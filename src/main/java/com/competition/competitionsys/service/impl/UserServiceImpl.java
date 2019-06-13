@@ -18,4 +18,9 @@ public class UserServiceImpl implements UserService {
     public List<UserModel> findAllUsers() {
         return userDao.findAllUsers();
     }
+
+    @Override
+    public UserModel findUserByUserCode(Integer userCode) {
+        return userDao.findUserByUserCode(userCode);
+    }
 }

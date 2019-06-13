@@ -1,5 +1,9 @@
 package com.competition.competitionsys.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /*
@@ -13,9 +17,20 @@ public class UserModel implements Serializable {
     private String password;//密码
     private Integer role;  //0是老师，1是学生
 
+
+    public Integer getUserCode() {
+        return userCode;
+    }
+
+    public void setUserCode(Integer userCode) {
+        this.userCode = userCode;
+    }
+
+    @JsonIgnore//这个注解是防止密码也通过json传出去
     public String getPassword() {
         return password;
     }
+
 
     public void setPassword(String password) {
         this.password = password;
@@ -29,21 +44,13 @@ public class UserModel implements Serializable {
         this.role = role;
     }
 
-
+    @JsonIgnore
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getUserCode() {
-        return userCode;
-    }
-
-    public void setUserCode(Integer userCode) {
-        this.userCode = userCode;
     }
 
     @Override
