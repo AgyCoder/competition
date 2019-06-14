@@ -27,29 +27,10 @@ public class LoginController {
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
     public ResponseData login(@RequestBody @Valid ReqUserModel reqUserModel){
-        if(null!=reqUserModel) {
-            //根据用户码查找用户
-            UserModel userModel = userService.findUserByUserCode(reqUserModel.getUserCode());
-            //判断用户是否存在
-            if (null != userModel) {
-                //判断密码
-                if (userModel.getPassword().equals(reqUserModel.getPassword())) {
-                    //判断角色
-                    if (userModel.getRole().equals(reqUserModel.getRole())) {
-                        if(userModel.getRole()==1){
-                            System.out.println("欢迎学生");
-                            return new ResponseData(WebCts.RESP_SUCCESS);
-                        }else
-                            System.out.println("欢迎老师");
-                            return new ResponseData(WebCts.RESP_SUCCESS);
-                    } else
-                        return new ResponseData("角色不符");
-                } else
-                    return new ResponseData("密码错误");
-            }
-            return new ResponseData("用户不存在");
-        }
-        return new ResponseData("网络出错！！！");
+        if(null != reqUserModel)
+            return userService.login(reqUserModel);
+        else
+            return new ResponseData("网络错误");
     }
 
     @RequestMapping(value = "/logout",method = RequestMethod.GET)

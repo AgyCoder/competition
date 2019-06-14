@@ -1,6 +1,7 @@
 package com.competition.competitionsys.controller;
 
 import com.competition.competitionsys.domain.UserModel;
+import com.competition.competitionsys.domain.VO.ResponseData;
 import com.competition.competitionsys.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,8 +18,7 @@ public class UserController {
     UserService userService;
 
     @RequestMapping("/findAllUsers")
-
-    public List<UserModel> findAllUsers(){
+    public ResponseData findAllUsers(){
         return userService.findAllUsers();
     }
 

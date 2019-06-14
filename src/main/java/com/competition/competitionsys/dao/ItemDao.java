@@ -13,8 +13,8 @@ import java.util.List;
 public interface ItemDao {
 
     //查看所有竞赛项目
-    public List<ItemModel> findAllItems();
+    List<ItemModel> findAllItems();
 
     //添加比赛项目
-    public Integer addItem(ItemModel itemModel);
+    Integer addItem(ItemModel itemModel);
 }
