@@ -11,4 +11,8 @@
             insert into item(itemName,categoryId,photo,description,signUpStartTime,signUpEndTime,startTime,endTime,sponsor)
             values (#{itemName},#{categoryId},#{photo},#{description},#{signUpStartTime},#{signUpEndTime},#{startTime},#{endTime},#{sponsor})
     </insert>
+
+    <delete id="deleteItem" parameterType="Integer">
+            delete from item where id=#{id}
+    </delete>
 </mapper>

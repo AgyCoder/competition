@@ -17,4 +17,7 @@ public interface ItemDao {
 
     //添加比赛项目
     Integer addItem(ItemModel itemModel);
+
+    //删除比赛项目
+    Integer deleteItem(Integer id);
 }

@@ -6,10 +6,7 @@ import com.competition.competitionsys.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -36,5 +33,14 @@ public class ItemController {
             //处理未接受到json参数的情况
             return new ResponseData("网络错误!");
         }
+    }
+
+    @RequestMapping(value="/deleteItem/{id}",method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseData deleteItem(@PathVariable Integer id){
+        if (null!=id)
+            return itemService.deleteItem(id);
+        else
+            return new ResponseData("网络错误");
     }
 }

@@ -41,4 +41,16 @@ public class ItemServiceImpl implements ItemService {
             return new ResponseData(WebCts.RESP_FAIL);
         }
     }
+
+    /**
+     * 删除项目
+     * @param项目id
+     * @return成功或者失败消息
+     */
+    public ResponseData deleteItem(Integer id){
+        if(1==itemDao.deleteItem(id))
+            return new ResponseData(WebCts.RESP_SUCCESS);
+        else
+            return new ResponseData(WebCts.RESP_FAIL);
+    }
 }
