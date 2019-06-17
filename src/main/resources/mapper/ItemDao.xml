@@ -2,12 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.competition.competitionsys.dao.ItemDao">
-    <select id="findAllItems" resultType="com.competition.competitionsys.domain.ItemModel">
+    <select id="findAllItems" resultType="itemModel">
         select * from item
     </select>
 
-    <insert id="addItem" useGeneratedKeys="true" keyProperty="id"
-            parameterType="com.competition.competitionsys.domain.ItemModel">
+    <insert id="addItem" useGeneratedKeys="true" keyProperty="id" parameterType="itemModel">
             insert into item(itemName,categoryId,photo,description,signUpStartTime,signUpEndTime,startTime,endTime,sponsor)
             values (#{itemName},#{categoryId},#{photo},#{description},#{signUpStartTime},#{signUpEndTime},#{startTime},#{endTime},#{sponsor})
     </insert>
@@ -15,4 +14,34 @@
     <delete id="deleteItem" parameterType="Integer">
             delete from item where id=#{id}
     </delete>
+
+    <select id="findItemById" parameterType="Integer" resultType="itemModel">
+            SELECT item.itemName,
+                  item.photo,
+                  item.description,
+                  item.signUpStartTime,
+                  item.signUpEndTime,
+                  item.startTime,
+                  item.endTime,
+                  item.sponsor,
+				  category.categoryName
+            FROM item,category
+            where item.categoryId=category.id
+            and item.id=#{id};
+    </select>
+
+    <update id="updateItem" parameterType="itemModel">
+            update item
+            set itemName=#{itemName},
+                categoryId=#{categoryId},
+                photo=#{photo},
+                description=#{description},
+                signUpStartTime=#{signUpStartTime},
+                signUpEndTime=#{signUpEndTime},
+                startTime=#{startTime},
+                endTime=#{endTime},
+                sponsor=#{sponsor}
+            where id=#{id}
+    </update>
+
 </mapper>

@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 public class ReqUserModel {
     private Integer userCode;//用户码(职工号或学号)
     private String password;//密码
-    private Integer role;  //0是老师，1是学生
+
 
     @NotNull(message="职工号不能为空")
     public Integer getUserCode() {
@@ -29,11 +29,11 @@ public class ReqUserModel {
         this.password = password;
     }
 
-    public Integer getRole() {
-        return role;
-    }
-
-    public void setRole(Integer role) {
-        this.role = role;
+    @Override
+    public String toString() {
+        return "ReqUserModel{" +
+                "userCode=" + userCode +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

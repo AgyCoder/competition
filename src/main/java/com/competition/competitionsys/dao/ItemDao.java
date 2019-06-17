@@ -20,4 +20,8 @@ public interface ItemDao {
 
     //删除比赛项目
     Integer deleteItem(Integer id);
+
+    ItemModel findItemById(Integer id);
+
+    Integer updateItem(ItemModel itemModel);
 }

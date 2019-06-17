@@ -10,4 +10,8 @@ public interface ItemService {
     ResponseData addItem(ItemModel itemModel);
 
     ResponseData deleteItem(Integer id);
+
+    ResponseData findItemById(Integer id);
+
+    ResponseData updateItem(Integer id,ItemModel itemModel);
 }

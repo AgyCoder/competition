@@ -16,11 +16,20 @@ public class ItemController {
     @Autowired
     private ItemService itemService;
 
+    /**
+     * 查找所有项目
+     * @return
+     */
     @RequestMapping("/findAllItems")
     public ResponseData findAllItems(){
         return  itemService.findAllItems();
     }
 
+    /**
+     * 添加项目并返回项目编号
+     * @param itemModel
+     * @return
+     */
     @RequestMapping(value = "/addItem",method = RequestMethod.POST)
     @Transactional
     public ResponseData addItem(@RequestBody @Valid ItemModel itemModel){
@@ -33,11 +42,35 @@ public class ItemController {
         }
     }
 
+    /**
+     * 通过项目id删除
+     * @param id
+     * @return
+     */
     @RequestMapping(value="/deleteItem/{id}",method = RequestMethod.GET)
     public ResponseData deleteItem(@PathVariable Integer id){
-        if (null!=id)
-            return itemService.deleteItem(id);
-        else
-            return new ResponseData("网络错误");
+        return itemService.deleteItem(id);
+    }
+
+    /**
+     * 通过项目id查找
+     * @param id
+     * @return
+     */
+    @RequestMapping(value="/findItemById",method = RequestMethod.GET)
+    public ResponseData findItemById(@RequestBody Integer id){
+        return itemService.findItemById(id);
+    }
+
+
+    /**
+     *
+     * @param itemModel
+     * @return
+     */
+    @RequestMapping(value="/updateItem",method=RequestMethod.POST)
+    public ResponseData updateItem(@RequestBody ItemModel itemModel) {
+        Integer id = itemModel.getId();
+        return itemService.updateItem(id,itemModel);
     }
 }

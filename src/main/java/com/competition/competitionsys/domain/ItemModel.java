@@ -14,6 +14,7 @@ public class ItemModel implements Serializable {
     private Integer id;       //项目id
     private String itemName;     //项目名称
     private Integer categoryId;  //类别id
+    private String categoryName;//类别名称
     private String photo;        //图片
     private String description;  //项目描述
     private String signUpStartTime; //比赛报名时间
@@ -104,12 +105,21 @@ public class ItemModel implements Serializable {
         this.sponsor = sponsor;
     }
 
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
     @Override
     public String toString() {
         return "ItemModel{" +
-                "itemId=" + id +
+                "id=" + id +
                 ", itemName='" + itemName + '\'' +
                 ", categoryId=" + categoryId +
+                ", categoryName='" + categoryName + '\'' +
                 ", photo='" + photo + '\'' +
                 ", description='" + description + '\'' +
                 ", signUpStartTime='" + signUpStartTime + '\'' +

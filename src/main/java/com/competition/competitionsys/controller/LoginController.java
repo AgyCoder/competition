@@ -16,7 +16,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RequestMapping("/login")
-@Controller
+@RestController
+@CrossOrigin(origins="*",
+            allowCredentials = "true",
+            allowedHeaders = "*",
+            methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.OPTIONS,RequestMethod.PUT})
 public class LoginController {
 
     @Autowired
@@ -24,9 +28,9 @@ public class LoginController {
     @Autowired
     HttpSession session;
 
-    @RequestMapping(value = "/",method = RequestMethod.POST)
-    @ResponseBody
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseData login(@RequestBody @Valid ReqUserModel reqUserModel){
+        System.out.println(reqUserModel);
         if(null != reqUserModel)
             return userService.login(reqUserModel);
         else

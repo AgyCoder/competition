@@ -46,4 +46,22 @@ public class MapperTest {
         List<ItemModel>items = itemDao.findAllItems();
         System.out.println(items);
     }
+
+    @Test
+    public void testselectItem(){
+        ItemModel itemModel = itemDao.findItemById(5);
+        System.out.println(itemModel);
+    }
+
+    @Test
+    public void testUpdateItem(){
+        ItemModel itemModel = itemDao.findItemById(5);
+        itemModel.setId(5);
+        itemModel.setCategoryId(2);
+        System.out.println(itemModel);
+        itemModel.setDescription("这是修改后的结果");
+        itemDao.updateItem(itemModel);
+        System.out.println(itemDao.updateItem(itemModel));
+
+    }
 }

@@ -54,9 +54,7 @@ public class StudentModel implements Serializable {
         this.telephone = telephone;
     }
 
-    public Integer getStudentId() {
-        return studentId;
-    }
+    public Integer getStudentId() { return studentId; }
 
     public void setStudentId(Integer studentId) {
         this.studentId = studentId;

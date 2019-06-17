@@ -1,5 +1,6 @@
 package com.competition.competitionsys.domain;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 
@@ -19,9 +20,8 @@ public class TeamModel implements Serializable {
         this.itemId = itemId;
     }
 
-    public Integer getStudentId() {
-        return studentId;
-    }
+    @NotNull(message = "请填写学号")
+    public Integer getStudentId() { return studentId; }
 
     public void setStudentId(Integer studentId) {
         this.studentId = studentId;
