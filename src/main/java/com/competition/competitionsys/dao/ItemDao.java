@@ -21,7 +21,9 @@ public interface ItemDao {
     //删除比赛项目
     Integer deleteItem(Integer id);
 
+    //通过项目id查找项目
     ItemModel findItemById(Integer id);
 
+    //修改项目
     Integer updateItem(ItemModel itemModel);
 }

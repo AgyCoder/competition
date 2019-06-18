@@ -2,6 +2,8 @@ package com.competition.competitionsys.service.impl;
 
 import com.competition.competitionsys.dao.UserDao;
 import com.competition.competitionsys.domain.Req.ReqUserModel;
+import com.competition.competitionsys.domain.StudentModel;
+import com.competition.competitionsys.domain.TeacherModel;
 import com.competition.competitionsys.domain.UserModel;
 import com.competition.competitionsys.domain.VO.ResponseData;
 import com.competition.competitionsys.domain.WebCts;
@@ -29,8 +31,7 @@ public class UserServiceImpl implements UserService {
      * @return对应的用户权限
      */
     public ResponseData login(ReqUserModel reqUserModel){
-            //根据用户码查找用户
-            UserModel userModel = (UserModel) userService.findUserByUserCode(reqUserModel.getUserCode()).getData();
+            UserModel userModel=userDao.login(reqUserModel.getUserCode(),reqUserModel.getPassword());
             //判断用户是否存在
             if (null != userModel) {
                 //判断密码
@@ -55,14 +56,25 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * 通过用户码查找用户
+     * 通过用户码查找学生
      * @param userCode
-     * @return对应的用户
+     * @return对应的学生
      */
     @Override
-    public ResponseData findUserByUserCode(Integer userCode) {
-        UserModel userModel = userDao.findUserByUserCode(userCode);
-        return new ResponseData(WebCts.RESP_SUCCESS,userModel);
+    public ResponseData findStudentByUserCode(Integer userCode) {
+        StudentModel studentModel = userDao.findStudentByUserCode(userCode);
+        return new ResponseData(WebCts.RESP_SUCCESS,studentModel);
+    }
+
+    /**
+     * 通过用户码查找老师
+     * @param userCode
+     * @return对应的老师
+     */
+    @Override
+    public ResponseData findTeacherByUserCode(Integer userCode) {
+        TeacherModel teacherModel = userDao.findTeacherByUserCode(userCode);
+        return new ResponseData(WebCts.RESP_SUCCESS,teacherModel);
     }
 
 }

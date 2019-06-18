@@ -2,11 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.competition.competitionsys.dao.UserDao">
+
     <select id="findAllUsers" resultType="com.competition.competitionsys.domain.UserModel">
         select * from user
     </select>
 
-    <select id="findUserByUserCode" resultType="com.competition.competitionsys.domain.UserModel" parameterType="Integer">
-        select * from user where userCode = #{userCode}
+    <select id="findStudentByUserCode" resultType="com.competition.competitionsys.domain.StudentModel" parameterType="Integer">
+        select * from student where studentId = #{userCode}
+    </select>
+
+    <select id="findTeacherByUserCode" resultType="com.competition.competitionsys.domain.TeacherModel" parameterType="Integer">
+        select * from teacher where teacherId = #{userCode}
+    </select>
+
+    <select id="login" resultType="com.competition.competitionsys.domain.UserModel">
+        select * from user where userCode = #{userCode} and password=#{password}
     </select>
 </mapper>
