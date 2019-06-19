@@ -11,6 +11,9 @@ public class WebCts {
     public static int APPROVED=1;   //通过
     public static int UNAPPROVED=2; //没有通过
 
+    public static int TEAM_SINGLE=0;//个人
+    public static int TEAM_MULTI=1;//团队
+
     public static String SESSION_USER="user";
     //public static int ROLE_ACTIVE=1;//角色激活
     //public static int ROLE_INACTIVE=0;//角色停用

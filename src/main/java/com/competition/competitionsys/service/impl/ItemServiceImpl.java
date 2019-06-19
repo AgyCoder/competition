@@ -68,7 +68,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     /**
-     *
+     *修改项目
      * @param id
      * @param itemModel
      * @return
@@ -82,5 +82,14 @@ public class ItemServiceImpl implements ItemService {
 
     }
 
+    /**
+     * 查看某一个老师的项目
+     * @param teacherId
+     * @return相关的项目集合
+     */
+    public ResponseData findItemByTeacherId(Integer teacherId){
+        List<ItemModel> itemModelList = itemDao.findItemByTeacherId(teacherId);
+        return new ResponseData(WebCts.RESP_SUCCESS,itemModelList);
+    }
 
 }

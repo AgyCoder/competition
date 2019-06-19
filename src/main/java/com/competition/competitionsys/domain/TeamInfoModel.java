@@ -6,16 +6,16 @@ import java.util.List;
 
 public class TeamInfoModel implements Serializable {
 
-    private Integer groupId;  //团队编号
+    private Integer teamId;  //团队编号
     private List<StudentModel> studentModels;//队员学号
 
 
     public Integer getGroupId() {
-        return groupId;
+        return teamId;
     }
 
     public void setGroupId(Integer groupId) {
-        this.groupId = groupId;
+        this.teamId = groupId;
     }
 
 

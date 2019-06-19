@@ -26,4 +26,7 @@ public interface ItemDao {
 
     //修改项目
     Integer updateItem(ItemModel itemModel);
+
+    //查看某老师发布的项目
+    List<ItemModel> findItemByTeacherId(Integer teacherId);
 }

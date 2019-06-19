@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.competition.competitionsys.dao.TeamDao">
+
+    <insert id="teamSignUp" parameterType="com.competition.competitionsys.domainTeamModel"
+    useGeneratedKeys="true" keyProperty="teamId">
+            insert into team(studentId,teacherName,teamRole,state,itemId)
+                   values(#{studentId},#{teacherName},#{teamRole},#{state},#{itemId})
+    </insert>
+
+    <insert id="teamInfoSignup" parameterType="com.competition.competitionsys.domain.TeamInfoModel">
+            insert into teaminfo(teamId,studentId)
+            values (#{teamId},#{studentId})
+    </insert>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

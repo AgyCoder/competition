@@ -64,7 +64,7 @@ public class ItemController {
 
 
     /**
-     *
+     *修改项目
      * @param itemModel
      * @return
      */
@@ -72,5 +72,15 @@ public class ItemController {
     public ResponseData updateItem(@RequestBody ItemModel itemModel) {
         Integer id = itemModel.getId();
         return itemService.updateItem(id,itemModel);
+    }
+
+    /**
+     * 查找某一老师的项目
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "findItemByTeacherId/{id}",method = RequestMethod.GET)
+    public ResponseData findItemByTeacherId(@PathVariable Integer id){
+        return itemService.findItemByTeacherId(id);
     }
 }
