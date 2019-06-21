@@ -2,6 +2,7 @@ package com.competition.competitionsys;
 
 import com.competition.competitionsys.dao.ItemDao;
 
+import com.competition.competitionsys.dao.TeamDao;
 import com.competition.competitionsys.dao.UserDao;
 import com.competition.competitionsys.domain.ItemModel;
 import com.competition.competitionsys.domain.TeamModel;
@@ -24,8 +25,8 @@ public class MapperTest {
     private UserDao userDao;
     @Autowired
     private ItemDao itemDao;
-//    @Autowired
-//    private TeamDao teamDao;
+    @Autowired
+    private TeamDao teamDao;
 
     @Autowired
     private ItemService itemService;
@@ -54,7 +55,7 @@ public class MapperTest {
 
     @Test
     public void testselectItem(){
-        ItemModel itemModel = itemDao.findItemById(5);
+        ItemModel itemModel = itemDao.findItemById(2);
         System.out.println(itemModel);
     }
 
@@ -70,9 +71,9 @@ public class MapperTest {
 
     }
 
-//    @Test
-//    public void testFindTeamById(){
-//        TeamModel teamModel = teamDao.findTeamByTeamId(2019);
-//        System.out.println(teamModel);
-//    }
+    @Test
+    public void testFindTeamById(){
+        List<TeamModel> teamModel = (List<TeamModel>) teamDao.findTeamByTeamId(2019);
+        System.out.println(teamModel);
+    }
 }

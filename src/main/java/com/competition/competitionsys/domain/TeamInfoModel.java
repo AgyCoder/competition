@@ -7,7 +7,7 @@ import java.util.List;
 public class TeamInfoModel implements Serializable {
 
     private Integer teamId;  //团队编号
-    private List<Integer> studentId;//队员学号
+    private Integer studentId;//队员学号
 
 
     public Integer getTeamId() {
@@ -18,11 +18,11 @@ public class TeamInfoModel implements Serializable {
         this.teamId = teamId;
     }
 
-    public List<Integer> getStudentId() {
+    public Integer getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(List<Integer> studentId) {
+    public void setStudentId(Integer studentId) {
         this.studentId = studentId;
     }
 }

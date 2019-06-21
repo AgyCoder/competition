@@ -25,9 +25,11 @@
                   item.startTime,
                   item.endTime,
                   item.sponsor,
+                  item.teacherId,
+                  category.categoryId,
 				  category.categoryName
             FROM item,category
-            where item.categoryId=category.id
+            where item.categoryId=category.categoryId
             and item.id=#{id};
     </select>
 

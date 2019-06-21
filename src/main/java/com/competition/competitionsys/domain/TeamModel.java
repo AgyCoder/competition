@@ -10,7 +10,16 @@ public class TeamModel implements Serializable {
     private Integer itemId;     //比赛项目id
     private String teacherName; //指导老师姓名
     private Integer teamRole;   //0是个人,1是团体
-    private Integer state;      //审核状态0待审核，1通过，2未通过
+    private Integer status;      //审核状态0待审核，1通过，2未通过
+    private Integer teammateId;   //队友学号
+
+    public Integer getTeammateId() {
+        return teammateId;
+    }
+
+    public void setTeammateId(Integer teammateId) {
+        this.teammateId = teammateId;
+    }
 
     public Integer getItemId() {
         return itemId;
@@ -43,12 +52,12 @@ public class TeamModel implements Serializable {
         this.teamRole = teamRole;
     }
 
-    public Integer getState() {
-        return state;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setState(Integer state) {
-        this.state = state;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     @Override
@@ -58,7 +67,8 @@ public class TeamModel implements Serializable {
                 ", itemId=" + itemId +
                 ", teacherName='" + teacherName + '\'' +
                 ", teamRole=" + teamRole +
-                ", state=" + state +
+                ", status=" + status +
+                ", teammateId=" + teammateId +
                 '}';
     }
 }
