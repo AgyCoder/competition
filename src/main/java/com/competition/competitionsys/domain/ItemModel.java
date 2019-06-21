@@ -22,6 +22,15 @@ public class ItemModel implements Serializable {
     private String startTime;       //比赛开始时间
     private String endTime;         //比赛结束时间
     private String sponsor;         //主办方
+    private Integer teacherId;    //教师工号
+
+    public Integer getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(Integer teacherId) {
+        this.teacherId = teacherId;
+    }
 
     public Integer getId() {
         return id;
@@ -127,6 +136,7 @@ public class ItemModel implements Serializable {
                 ", startTime='" + startTime + '\'' +
                 ", endTime='" + endTime + '\'' +
                 ", sponsor='" + sponsor + '\'' +
+                ", teacherId=" + teacherId +
                 '}';
     }
 }

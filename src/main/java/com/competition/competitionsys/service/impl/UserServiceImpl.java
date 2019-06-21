@@ -20,8 +20,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
-    @Autowired
-    private UserService userService;
+
     @Autowired
     private HttpSession session;
 

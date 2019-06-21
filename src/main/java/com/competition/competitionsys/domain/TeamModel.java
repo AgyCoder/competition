@@ -50,4 +50,15 @@ public class TeamModel implements Serializable {
     public void setState(Integer state) {
         this.state = state;
     }
+
+    @Override
+    public String toString() {
+        return "TeamModel{" +
+                "studentId=" + studentId +
+                ", itemId=" + itemId +
+                ", teacherName='" + teacherName + '\'' +
+                ", teamRole=" + teamRole +
+                ", state=" + state +
+                '}';
+    }
 }

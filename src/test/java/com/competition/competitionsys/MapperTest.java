@@ -1,8 +1,10 @@
 package com.competition.competitionsys;
 
 import com.competition.competitionsys.dao.ItemDao;
+
 import com.competition.competitionsys.dao.UserDao;
 import com.competition.competitionsys.domain.ItemModel;
+import com.competition.competitionsys.domain.TeamModel;
 import com.competition.competitionsys.domain.UserModel;
 import com.competition.competitionsys.service.ItemService;
 import com.competition.competitionsys.service.UserService;
@@ -22,6 +24,8 @@ public class MapperTest {
     private UserDao userDao;
     @Autowired
     private ItemDao itemDao;
+//    @Autowired
+//    private TeamDao teamDao;
 
     @Autowired
     private ItemService itemService;
@@ -36,6 +40,7 @@ public class MapperTest {
         ItemModel itemModel=new ItemModel();
         itemModel.setItemName("国际象棋");
         itemModel.setCategoryId(1);
+        itemModel.setTeacherId(1);
         itemService.addItem(itemModel);
         Integer id=itemModel.getId();
         System.out.println(id);
@@ -64,4 +69,10 @@ public class MapperTest {
         System.out.println(itemDao.updateItem(itemModel));
 
     }
+
+//    @Test
+//    public void testFindTeamById(){
+//        TeamModel teamModel = teamDao.findTeamByTeamId(2019);
+//        System.out.println(teamModel);
+//    }
 }
