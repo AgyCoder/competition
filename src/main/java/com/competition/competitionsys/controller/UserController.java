@@ -5,15 +5,16 @@ import com.competition.competitionsys.domain.VO.ResponseData;
 import com.competition.competitionsys.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins="*",
+        allowCredentials = "true",
+        allowedHeaders = "*",
+        methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.OPTIONS,RequestMethod.PUT})
 public class UserController {
     @Autowired
     UserService userService;
@@ -26,6 +27,7 @@ public class UserController {
     public ResponseData findAllUsers(){
         return userService.findAllUsers();
     }
+
 
     /**
      * 找学生
@@ -46,4 +48,6 @@ public class UserController {
     public ResponseData findTeacher(@PathVariable("userCode") Integer userCode){
         return userService.findStudentByUserCode(userCode);
     }
+
+
 }

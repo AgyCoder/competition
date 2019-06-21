@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.competition.competitionsys.dao.TeamDao">
 
-    <insert id="teamSignUp" parameterType="com.competition.competitionsys.domainTeamModel"
+    <insert id="teamSignUp" parameterType="com.competition.competitionsys.domain.TeamModel"
     useGeneratedKeys="true" keyProperty="teamId">
             insert into team(studentId,teacherName,teamRole,state,itemId)
                    values(#{studentId},#{teacherName},#{teamRole},#{state},#{itemId})
@@ -13,6 +13,39 @@
             insert into teaminfo(teamId,studentId)
             values (#{teamId},#{studentId})
     </insert>
+
+    <select id="findTeamByTeamId" parameterType="Integer" resultType="com.competition.competitionsys.domain.TeamModel">
+            select team.teamId,
+                   team.studentId,
+                   team.teacherName,
+                   team.teamRole,
+                   team.status,
+                   team.itemId,
+                   teamInfo.studentId
+             from team,teamInfo
+             where team.teamId=teamInfo.teamId
+             and team.teamId=#{teamId}
+    </select>
+
+    <select id="findWaitingTeam" parameterType="Integer" resultType="com.competition.competitionsys.domain.TeamModel">
+            select * from team where status=#{status}
+    </select>
+
+    <select id="findApprovedTeam" parameterType="Integer" resultType="com.competition.competitionsys.domain.TeamModel">
+            select * from team where status=#{status}
+    </select>
+
+    <select id="findUnapprovedTeam" parameterType="Integer" resultType="com.competition.competitionsys.domain.TeamModel">
+            select * from team where status=#{status}
+    </select>
+
+    <update id="changeTeamStatus" parameterType="com.competition.competitionsys.domain.ReqTeamModel" >
+            update team set status=#{status} where teamId=#{teamId}
+    </update>
+
+
+
+</mapper>
 
 
 

@@ -24,5 +24,4 @@ public class CategoryModel implements Serializable {
     }
 
 
-
 }
