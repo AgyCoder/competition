@@ -34,8 +34,9 @@ public class LoginController {
         System.out.println(reqUserModel);
         if(null != reqUserModel) {
             session.setAttribute(WebCts.SESSION_USER,reqUserModel);
-            String id=session.getId();
-            System.out.println(id);
+//            System.out.println(session.getAttribute(WebCts.SESSION_USER));
+//            String id=session.getId();
+//            System.out.println(id);
             return userService.login(reqUserModel);
         }else
             return new ResponseData("网络错误");

@@ -1,5 +1,6 @@
 package com.competition.competitionsys.dao;
 
+import com.competition.competitionsys.domain.Req.ReqUserModel;
 import com.competition.competitionsys.domain.StudentModel;
 import com.competition.competitionsys.domain.TeacherModel;
 import com.competition.competitionsys.domain.UserModel;

@@ -55,9 +55,10 @@ public class UserController {
     }
 
     @RequestMapping("/changePassword")
-    public ResponseData ChangePassword(@RequestParam(name = "password" )String pd){
+    public ResponseData ChangePassword(@RequestParam("password")String pd){
 
-        System.out.println(session.getAttribute(WebCts.SESSION_USER));
+//        System.out.println(session.getAttribute(WebCts.SESSION_USER));
+        //从dao中返回的类型是user model，目的是为了获取权限
         UserModel reqUserModel= (UserModel) session.getAttribute(WebCts.SESSION_USER);
 
         reqUserModel.setPassword(pd);
