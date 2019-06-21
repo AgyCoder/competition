@@ -18,4 +18,6 @@ public interface UserService {
 
     //验证登录
     ResponseData login(ReqUserModel reqUserModel);
+
+    void updatePassword(int userId ,String password);
 }

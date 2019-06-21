@@ -1,13 +1,14 @@
 package com.competition.competitionsys.controller;
 
+import com.competition.competitionsys.domain.Req.ReqUserModel;
 import com.competition.competitionsys.domain.UserModel;
 import com.competition.competitionsys.domain.VO.ResponseData;
+import com.competition.competitionsys.domain.WebCts;
 import com.competition.competitionsys.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/user")
@@ -18,6 +19,10 @@ import java.util.List;
 public class UserController {
     @Autowired
     UserService userService;
+    @Autowired
+    private HttpSession session;
+
+
 
     /**
      * 找所有用户
@@ -47,6 +52,22 @@ public class UserController {
     @RequestMapping("/findTeacher/{userCode}")
     public ResponseData findTeacher(@PathVariable("userCode") Integer userCode){
         return userService.findStudentByUserCode(userCode);
+    }
+
+    @RequestMapping("/changePassword")
+    public ResponseData ChangePassword(@RequestParam(name = "password" )String pd){
+
+        System.out.println(session.getAttribute(WebCts.SESSION_USER));
+        UserModel reqUserModel= (UserModel) session.getAttribute(WebCts.SESSION_USER);
+
+        reqUserModel.setPassword(pd);
+        //更改数据库密码
+        userService.updatePassword(reqUserModel.getUserCode(),reqUserModel.getPassword());
+        //更新session密码
+        session.setAttribute(WebCts.SESSION_USER,reqUserModel);
+        System.out.println(reqUserModel);
+
+        return new ResponseData(WebCts.RESP_SUCCESS);
     }
 
 

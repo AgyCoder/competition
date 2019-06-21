@@ -26,4 +26,5 @@ public interface UserDao {
     //根据userCode寻找老师
     TeacherModel findTeacherByUserCode(Integer userCode);
 
+    void updatePassword(int userId, String password);
 }

@@ -28,12 +28,16 @@ public class LoginController {
     @Autowired
     HttpSession session;
 
+
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseData login(@RequestBody @Valid ReqUserModel reqUserModel){
         System.out.println(reqUserModel);
-        if(null != reqUserModel)
+        if(null != reqUserModel) {
+            session.setAttribute(WebCts.SESSION_USER,reqUserModel);
+            String id=session.getId();
+            System.out.println(id);
             return userService.login(reqUserModel);
-        else
+        }else
             return new ResponseData("网络错误");
     }
 

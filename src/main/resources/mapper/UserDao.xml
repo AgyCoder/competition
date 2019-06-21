@@ -19,5 +19,11 @@
         select * from teacher where teacherId = #{userCode}
     </select>
 
+    <update id="updatePassword">
+        update user
+        set password=#{password} where userCode=#{userId}
+    </update>
+
+
 
 </mapper>
