@@ -26,4 +26,7 @@ public interface UserDao {
     //根据userCode寻找老师
     TeacherModel findTeacherByUserCode(Integer userCode);
 
+    //老师修改个人信息
+    Integer updateTeacherInfo(TeacherModel teacherModel);
+
 }

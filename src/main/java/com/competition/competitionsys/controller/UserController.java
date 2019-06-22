@@ -1,13 +1,9 @@
 package com.competition.competitionsys.controller;
 
-import com.competition.competitionsys.domain.UserModel;
 import com.competition.competitionsys.domain.VO.ResponseData;
 import com.competition.competitionsys.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -46,8 +42,9 @@ public class UserController {
      */
     @RequestMapping("/findTeacher/{userCode}")
     public ResponseData findTeacher(@PathVariable("userCode") Integer userCode){
-        return userService.findStudentByUserCode(userCode);
+        return userService.findTeacherByUserCode(userCode);
     }
+
 
 
 }

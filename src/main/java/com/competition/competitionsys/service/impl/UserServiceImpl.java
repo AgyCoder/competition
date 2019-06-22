@@ -1,5 +1,6 @@
 package com.competition.competitionsys.service.impl;
 
+
 import com.competition.competitionsys.dao.UserDao;
 import com.competition.competitionsys.domain.Req.ReqUserModel;
 import com.competition.competitionsys.domain.StudentModel;
@@ -11,8 +12,8 @@ import com.competition.competitionsys.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 import java.util.List;
 
 @Service("UserService")
@@ -42,6 +43,17 @@ public class UserServiceImpl implements UserService {
                     return new ResponseData("密码错误");
             }
             return new ResponseData("用户不存在");
+    }
+
+    /**
+     * 修改老师个人信息
+     *  @param teacherModel
+     * @return
+     */
+    @Override
+    public ResponseData updateTeacherInfo(TeacherModel teacherModel) {
+        userDao.updateTeacherInfo(teacherModel);
+        return new ResponseData(WebCts.RESP_SUCCESS);
     }
 
     /**

@@ -31,9 +31,10 @@ public class LoginController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseData login(@RequestBody @Valid ReqUserModel reqUserModel){
         System.out.println(reqUserModel);
-        if(null != reqUserModel)
+        if(null != reqUserModel) {
+            session.setAttribute(WebCts.SESSION_USER, reqUserModel);
             return userService.login(reqUserModel);
-        else
+        }else
             return new ResponseData("网络错误");
     }
 

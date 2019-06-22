@@ -1,6 +1,7 @@
 package com.competition.competitionsys.service;
 
 import com.competition.competitionsys.domain.Req.ReqUserModel;
+import com.competition.competitionsys.domain.TeacherModel;
 import com.competition.competitionsys.domain.UserModel;
 import com.competition.competitionsys.domain.VO.ResponseData;
 
@@ -18,4 +19,7 @@ public interface UserService {
 
     //验证登录
     ResponseData login(ReqUserModel reqUserModel);
+
+    //修改老师信息
+    ResponseData updateTeacherInfo(TeacherModel teacherModel);
 }

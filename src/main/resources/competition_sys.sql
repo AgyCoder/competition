@@ -11,7 +11,7 @@
  Target Server Version : 50149
  File Encoding         : 65001
 
- Date: 13/06/2019 00:32:14
+ Date: 22/06/2019 15:06:25
 */
 
 SET NAMES utf8mb4;
@@ -22,9 +22,9 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category`  (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '类别名称',
-  PRIMARY KEY (`id`) USING BTREE
+  `categoryId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `categoryName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '类别名称',
+  PRIMARY KEY (`categoryId`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
@@ -46,22 +46,25 @@ CREATE TABLE `item`  (
   `itemName` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '比赛名称',
   `categoryId` int(10) UNSIGNED NOT NULL COMMENT '类别',
   `photo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图片',
-  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '比赛描述',
+  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '比赛描述',
   `signUpStartTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '报名开始时间',
   `signUpEndTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '报名结束时间',
   `startTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '比赛开始时间',
   `endTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '比赛结束时间',
   `sponsor` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '主办方',
+  `teacherId` int(10) UNSIGNED NOT NULL COMMENT '职工号',
   PRIMARY KEY (`id`) USING BTREE,
+  INDEX `fki_teach`(`teacherId`) USING BTREE,
   INDEX `fki_c`(`categoryId`) USING BTREE,
-  CONSTRAINT `fki_c` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+  CONSTRAINT `fki_c` FOREIGN KEY (`categoryId`) REFERENCES `category` (`categoryId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fki_teach` FOREIGN KEY (`teacherId`) REFERENCES `teacher` (`teacherId`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of item
 -- ----------------------------
-INSERT INTO `item` VALUES (1, '计算机博弈大赛', 1, NULL, NULL, '2019-01-01', '2019-02-02', '2019-03-03', '2019-03-03', '电子科大中山学院');
-INSERT INTO `item` VALUES (2, 'ACM', 1, NULL, '大学生程序设计大赛', '2018-02-04', '2018-04-02', '2019-01-01', '2019-02-05', '电子科大中山学院');
+INSERT INTO `item` VALUES (1, '计算机博弈大赛', 1, NULL, NULL, '2019-01-01', '2019-02-02', '2019-03-03', '2019-03-03', '电子科大中山学院', 1);
+INSERT INTO `item` VALUES (2, 'ACM', 1, NULL, '大学生程序设计大赛', '2018-02-04', '2018-04-02', '2019-01-01', '2019-02-05', '电子科大中山学院', 2);
 
 -- ----------------------------
 -- Table structure for student
@@ -70,7 +73,7 @@ DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student`  (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `studentId` int(10) UNSIGNED NOT NULL COMMENT '学号',
-  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '姓名',
+  `studentName` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '姓名',
   `major` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '专业',
   `klass` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '班级',
   `telephone` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电话',
@@ -79,13 +82,14 @@ CREATE TABLE `student`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `fkstutou`(`studentId`) USING BTREE,
   CONSTRAINT `fkstutou` FOREIGN KEY (`studentId`) REFERENCES `user` (`userCode`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of student
 -- ----------------------------
 INSERT INTO `student` VALUES (1, 5, '学生A', '软件工程', '大二', '0202151025', b'1', '12315');
 INSERT INTO `student` VALUES (2, 4, '学生B', '材料科学', '大三', '12321541', b'0', '4534');
+INSERT INTO `student` VALUES (3, 6, '学生C', '计算机科学与技术', '大二', '123456789', b'1', '61');
 
 -- ----------------------------
 -- Table structure for teacher
@@ -94,7 +98,7 @@ DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE `teacher`  (
   `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `teacherId` int(10) UNSIGNED NOT NULL COMMENT '职工号',
-  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '姓名',
+  `teacherName` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '姓名',
   `institute` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '学院',
   `office` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '办公室',
   `telephone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电话',
@@ -109,7 +113,7 @@ CREATE TABLE `teacher`  (
 -- Records of teacher
 -- ----------------------------
 INSERT INTO `teacher` VALUES (1, 1, '洪俐', '计算机学院', '厚德楼8楼', '15362143070', b'1', NULL);
-INSERT INTO `teacher` VALUES (2, 2, 'admin', '材料与食品学院', '树德楼', '0000002222', b'1', NULL);
+INSERT INTO `teacher` VALUES (2, 2, '我修改了', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `teacher` VALUES (3, 3, '黎小明', '计算机学院', '厚德楼802', '001020202', b'1', NULL);
 
 -- ----------------------------
@@ -117,18 +121,23 @@ INSERT INTO `teacher` VALUES (3, 3, '黎小明', '计算机学院', '厚德楼80
 -- ----------------------------
 DROP TABLE IF EXISTS `team`;
 CREATE TABLE `team`  (
-  `groupId` int(60) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '团队编号',
+  `teamId` int(60) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '团队编号',
   `studentId` int(10) UNSIGNED NOT NULL COMMENT '队长学号',
-  `teacherName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '指导老师',
+  `teacherId` int(10) UNSIGNED NOT NULL COMMENT '指导老师',
   `teamRole` int(1) UNSIGNED NOT NULL COMMENT '0表示个人报名，1表示团体报名',
-  `state` int(1) UNSIGNED NULL DEFAULT NULL COMMENT '审核状态,0为等待审核,1为通过审核,2为审核不通过',
+  `status` int(1) UNSIGNED NULL DEFAULT NULL COMMENT '审核状态,0为等待审核,1为通过审核,2为审核不通过',
   `itemId` int(10) UNSIGNED NOT NULL COMMENT '报名的项目',
-  PRIMARY KEY (`groupId`) USING BTREE,
+  PRIMARY KEY (`teamId`) USING BTREE,
   INDEX `fkteamtostu`(`studentId`) USING BTREE,
   INDEX `fkteamtoit`(`itemId`) USING BTREE,
-  CONSTRAINT `fkteamtostu` FOREIGN KEY (`studentId`) REFERENCES `student` (`studentId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `fkteamtoit` FOREIGN KEY (`itemId`) REFERENCES `item` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '报名的的项目' ROW_FORMAT = Compact;
+  CONSTRAINT `fkteamtoit` FOREIGN KEY (`itemId`) REFERENCES `item` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fkteamtostu` FOREIGN KEY (`studentId`) REFERENCES `student` (`studentId`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 2020 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '报名的的项目' ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of team
+-- ----------------------------
+INSERT INTO `team` VALUES (2019, 4, 1001, 1, 0, 2);
 
 -- ----------------------------
 -- Table structure for teaminfo
@@ -136,14 +145,20 @@ CREATE TABLE `team`  (
 DROP TABLE IF EXISTS `teaminfo`;
 CREATE TABLE `teaminfo`  (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `groupId` int(60) UNSIGNED NOT NULL,
+  `teamId` int(60) UNSIGNED NOT NULL,
   `studentId` int(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `fkt_t1`(`groupId`) USING BTREE,
   INDEX `fktinfotostu`(`studentId`) USING BTREE,
-  CONSTRAINT `fktinfotostu` FOREIGN KEY (`studentId`) REFERENCES `student` (`studentId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `fkt_t1` FOREIGN KEY (`groupId`) REFERENCES `team` (`groupId`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+  INDEX `fkinfotuteam`(`teamId`) USING BTREE,
+  CONSTRAINT `fkinfotuteam` FOREIGN KEY (`teamId`) REFERENCES `team` (`teamId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fktinfotostu` FOREIGN KEY (`studentId`) REFERENCES `student` (`studentId`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of teaminfo
+-- ----------------------------
+INSERT INTO `teaminfo` VALUES (1, 2019, 5);
+INSERT INTO `teaminfo` VALUES (2, 2019, 6);
 
 -- ----------------------------
 -- Table structure for user
@@ -156,7 +171,7 @@ CREATE TABLE `user`  (
   `role` tinyint(1) UNSIGNED ZEROFILL NULL DEFAULT NULL COMMENT '0是老师，1是学生',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `userCode`(`userCode`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of user
@@ -166,5 +181,6 @@ INSERT INTO `user` VALUES (2, 1, '123456', 0);
 INSERT INTO `user` VALUES (3, 2, '123456', 0);
 INSERT INTO `user` VALUES (4, 3, '123456', 1);
 INSERT INTO `user` VALUES (5, 4, '123456', 1);
+INSERT INTO `user` VALUES (6, 6, '123456', 1);
 
 SET FOREIGN_KEY_CHECKS = 1;

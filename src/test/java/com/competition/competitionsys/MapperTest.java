@@ -1,14 +1,12 @@
 package com.competition.competitionsys;
 
 import com.competition.competitionsys.dao.ItemDao;
-
 import com.competition.competitionsys.dao.TeamDao;
 import com.competition.competitionsys.dao.UserDao;
 import com.competition.competitionsys.domain.ItemModel;
-import com.competition.competitionsys.domain.TeamModel;
+import com.competition.competitionsys.domain.TeacherModel;
 import com.competition.competitionsys.domain.UserModel;
 import com.competition.competitionsys.service.ItemService;
-import com.competition.competitionsys.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,9 +69,19 @@ public class MapperTest {
 
     }
 
+//    @Test
+//    public void testFindTeamById(){
+//        List<TeamModel> teamModel = (List<TeamModel>) teamDao.findTeamByTeamId(2019);
+//        System.out.println(teamModel);
+//    }
+
+
     @Test
-    public void testFindTeamById(){
-        List<TeamModel> teamModel = (List<TeamModel>) teamDao.findTeamByTeamId(2019);
-        System.out.println(teamModel);
+    public void testUpdateTeacherInfo(){
+        TeacherModel teacherModel = new TeacherModel();
+        teacherModel.setTeacherId(2);
+        teacherModel.setName("我修改了");
+        userDao.updateTeacherInfo(teacherModel);
+        System.out.println(teacherModel);
     }
 }

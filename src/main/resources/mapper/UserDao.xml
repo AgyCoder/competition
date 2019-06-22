@@ -19,5 +19,17 @@
         select * from teacher where teacherId = #{userCode}
     </select>
 
+    <update id="updateTeacherInfo" parameterType="com.competition.competitionsys.domain.TeacherModel">
+        update teacher
+        set
+        institute=#{institute},
+        teacherName=#{name},
+        office=#{office},
+        telephone=#{telephone},
+        sex=#{sex},
+        email=#{email}
+        where teacherId=#{teacherId}
+    </update>
+
 
 </mapper>
