@@ -88,4 +88,9 @@ public class UserServiceImpl implements UserService {
         return new ResponseData(WebCts.RESP_SUCCESS,teacherModel);
     }
 
+
+    @Override
+    public  void updatePassword(int userId ,String password){
+        userDao.updatePassword(userId,password);
+    }
 }
